@@ -55,7 +55,7 @@ namespace ModernUI
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
-            MySqlCommand cmd = new MySqlCommand("select number As 'Ticket Number', issue_title As 'Ticket Category', problem As 'Ticket Problem', details as 'Ticket Details', status As 'Ticket Status', date_created As 'Date Created' from tickets", connection);
+            MySqlCommand cmd = new MySqlCommand("select number As 'Ticket Number', issue_title As 'Ticket Category', problem As 'Ticket Problem', details as 'Ticket Details', reported_by_name As 'Reported By', assigned_to As 'Assigned To', status As 'Ticket Status', date_created As 'Date Created', date_updated As 'Date Updated' from tickets", connection);
             connection.Open();
             DataTable dt = new DataTable();
             dt.Load(cmd.ExecuteReader());
@@ -248,7 +248,7 @@ namespace ModernUI
                 titletext_Create.Visibility = Visibility.Collapsed;
                 titletext_Reports.Visibility = Visibility.Collapsed;
                 grid_Report.Visibility = Visibility.Collapsed;
-
+                titletext_ManageAccounts.Visibility = Visibility.Collapsed;
                 titletext_View.Visibility = Visibility.Visible;
                 grid_ViewTickets.Visibility = Visibility.Visible;
                 grid_ManageAccounts.Visibility = Visibility.Collapsed;
@@ -266,6 +266,7 @@ namespace ModernUI
                 titletext_View.Visibility = Visibility.Collapsed;
                 titletext_Create.Visibility = Visibility.Visible;
                 titletext_Reports.Visibility = Visibility.Collapsed;
+                titletext_ManageAccounts.Visibility = Visibility.Collapsed;
                 grid_Report.Visibility = Visibility.Collapsed;
                 grid_ViewTickets.Visibility = Visibility.Collapsed;
                 grid_ManageAccounts.Visibility = Visibility.Collapsed;
@@ -279,6 +280,7 @@ namespace ModernUI
             titletext_View.Visibility = Visibility.Collapsed;
             titletext_Create.Visibility = Visibility.Collapsed;
             titletext_Reports.Visibility = Visibility.Collapsed;
+            titletext_ManageAccounts.Visibility = Visibility.Visible;
             grid_Report.Visibility = Visibility.Collapsed;
             grid_ViewTickets.Visibility = Visibility.Collapsed;
 
@@ -301,6 +303,7 @@ namespace ModernUI
                 titletext_View.Visibility = Visibility.Collapsed;
                 titletext_Create.Visibility = Visibility.Collapsed;
                 titletext_Reports.Visibility = Visibility.Visible;
+                titletext_ManageAccounts.Visibility = Visibility.Collapsed;
 
                 grid_Report.Visibility = Visibility.Visible;
                 grid_ViewTickets.Visibility = Visibility.Collapsed;
