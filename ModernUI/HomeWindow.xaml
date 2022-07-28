@@ -850,11 +850,8 @@
                 <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top">
 
                     <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top">
-<<<<<<< HEAD
                         <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Center" Height="521" VerticalAlignment="Top" Width="950" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn" ColumnWidth="*">
-=======
-                        <DataGrid x:Name="dtGrid" ColumnWidth="*" IsReadOnly = "true" HorizontalAlignment="Center" Height="521" VerticalAlignment="Top" Width="950" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn">
->>>>>>> parent of 6aeac5a (Revert "fixed the manage accounts window")
+
                             <DataGrid.Columns>
 
                             </DataGrid.Columns>
@@ -872,33 +869,15 @@
                     <ColumnDefinition Width="393*"/>
                     <ColumnDefinition Width="619*"/>
                 </Grid.ColumnDefinitions>
-<<<<<<< HEAD
-                <DataGrid x:Name="dtGridAccounts" IsReadOnly = "true" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="566" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20"  Grid.ColumnSpan="2" Margin="26,29,0,0" ColumnWidth="*"/>                
 
-                    <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="51" Margin="251,206,0,0" VerticalAlignment="Top" Width="283" Grid.Column="1" RenderTransformOrigin="0.467,0.606">
-                    <TextBox x:Name="textBox" Text="TextBox" TextWrapping="Wrap" Width="120"/>
-                </ComboBox>
-                <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Height="51" Margin="249,81,0,0" VerticalAlignment="Top" Width="169" Grid.Column="1"/>
-                <TextBox x:Name="textBox1_Copy" HorizontalAlignment="Left" Margin="28,448,0,0" Text="Last name" TextWrapping="Wrap" VerticalAlignment="Top" Width="566" Height="52" Grid.ColumnSpan="2" />
-                <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="249,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" FontSize="22" Foreground="#FFACB0AF"><Run Text="User ID"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-                <TextBlock x:Name="textBlock_Copy" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="253,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" FontSize="22" Foreground="#FFACB0AF"><Run Text="User Role"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-                <TextBox x:Name="textBox1_Copy1" HorizontalAlignment="Left" Margin="26,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="566" Height="52" Grid.ColumnSpan="2" Text="First Name"/>
-=======
-                <DataGrid x:Name="dtGridAccounts" IsReadOnly = "true" HorizontalAlignment="Left" Height="462" VerticalAlignment="Top" Width="566" ItemsSource="{Binding}" GridLinesVisibility="All" ColumnWidth="*" FontSize="20"  Grid.ColumnSpan="2" Margin="26,29,0,0" SelectionChanged="dtGridAccounts_SelectionChanged"/>
+                <DataGrid x:Name="dtGridAccounts" IsReadOnly = "true" HorizontalAlignment="Left" Height="448" VerticalAlignment="Top" Width="566" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20"  Grid.ColumnSpan="2" Margin="26,29,0,0" ColumnWidth="*" SelectionChanged="dtGridAccounts_SelectionChanged"/>
+
 
                 <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                                 x:Name="combobox_EditRole"
                                 Background="Transparent"
                                 SelectedIndex="0"
                                 FontSize="15" Template="{DynamicResource ComboBoxTemplate}" Grid.Column="1" Margin="254,103,149,393">
-
-
-                    <TextBlock  Margin="5,3"
-                                        Padding="5,0" 
-                                        IsHitTestVisible="False" 
-                                        FontSize="15" 
-                                        Foreground="Gray" 
-                                        Text="Edit Role"/>
 
                     <ComboBoxItem Height="35" FontSize="15">
                         <TextBlock 
@@ -938,7 +917,7 @@
                 <TextBlock x:Name="text_role" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="497,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="22" Foreground="#FFACB0AF"><Run Text="User Role"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
 
                 <Button x:Name="button_edit" Content="Edit Role" Style="{StaticResource mainButton}" Margin="251,180,168,307" Grid.Column="1" Click="button_edit_Click" />
->>>>>>> parent of 6aeac5a (Revert "fixed the manage accounts window")
+
 
             </Grid>
 

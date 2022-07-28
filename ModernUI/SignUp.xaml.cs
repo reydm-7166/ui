@@ -89,10 +89,11 @@ namespace ModernUI
             string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
             if (txtbox_Firstname.Text != "" && txtbox_Lastname.Text != "" && txtbox_Username.Text != "" && txtbox_Password.Password != "")
             {
-                if (txtbox_Username.Text.Length > 10 && txtbox_Password.Password.Length > 8)
+                if (txtbox_Username.Text.Length > 8 && txtbox_Password.Password.Length > 8)
                 {
                     try
                     {
+
                         MySqlConnection connection = new MySqlConnection(connectionString);
 
                         string query = "INSERT INTO `mydb`.`users` (`firstname`, `lastname`, `username`, `password`) VALUES('" + txtbox_Firstname.Text + "','" + txtbox_Lastname.Text + "','" + txtbox_Username.Text + "','" + txtbox_Password.Password + "');";

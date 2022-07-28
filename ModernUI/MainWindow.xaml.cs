@@ -91,39 +91,46 @@ namespace ModernUI
                         {
                             if (reader.HasRows)
                             {
-
                                 while (reader.Read())
                                 {
-                                    HomeWindow HomeWindow = new HomeWindow();
-                                    txtbox_Username.Clear();
-                                    txtbox_Password.Clear();
-
-                                    mainConnectionClass.staffID = reader[0].ToString();
-                                    mainConnectionClass.staffFirstName = reader[1].ToString();
-                                    mainConnectionClass.staffLastName = reader[2].ToString();
-                                    mainConnectionClass.role = reader[5].ToString();
-
-
-                                    HomeWindow.txtbox_ReportedByStaffID.Text = mainConnectionClass.staffID;
-                                    HomeWindow.txtbox_ReportedByStaffName.Text = mainConnectionClass.staffFirstName + " " + mainConnectionClass.staffLastName;
-                                    HomeWindow.text_LoggedInAs.Text += "Supervisor";
-                                    HomeWindow.text_LoggedInAs.Text += ", " + mainConnectionClass.staffFirstName;
-
-                                    HomeWindow.txtbox_Role.Text = mainConnectionClass.role == "1" ? "Supervisor" : "Staff User";
-
-                                    /// Creates the homestaffwindow object and shows it on else block
-                                    StaffHomeWindow staffHome = new StaffHomeWindow();
-                                    if (mainConnectionClass.role == "1")
+                                    if(reader[5].ToString() != "")
                                     {
-                                        HomeWindow.Show();
-                                    } else
-                                    {
-                                        staffHome.text_LoggedInAs.Text += "Support Staff";
-                                        staffHome.text_LoggedInAs.Text += ", " + mainConnectionClass.staffFirstName;
+                                        HomeWindow HomeWindow = new HomeWindow();
+                                        txtbox_Username.Clear();
+                                        txtbox_Password.Clear();
 
-                                    staffHome.Show();
+                                        mainConnectionClass.staffID = reader[0].ToString();
+                                        mainConnectionClass.staffFirstName = reader[1].ToString();
+                                        mainConnectionClass.staffLastName = reader[2].ToString();
+                                        mainConnectionClass.role = reader[5].ToString();
+
+
+                                        HomeWindow.txtbox_ReportedByStaffID.Text = mainConnectionClass.staffID;
+                                        HomeWindow.txtbox_ReportedByStaffName.Text = mainConnectionClass.staffFirstName + " " + mainConnectionClass.staffLastName;
+                                        HomeWindow.text_LoggedInAs.Text += "Supervisor";
+                                        HomeWindow.text_LoggedInAs.Text += ", " + mainConnectionClass.staffFirstName;
+
+                                        HomeWindow.txtbox_Role.Text = mainConnectionClass.role == "1" ? "Supervisor" : "Staff User";
+
+                                        /// Creates the homestaffwindow object and shows it on else block
+                                        StaffHomeWindow staffHome = new StaffHomeWindow();
+                                        if (mainConnectionClass.role == "1")
+                                        {
+                                            HomeWindow.Show();
+                                        }
+                                        else
+                                        {
+                                            staffHome.text_LoggedInAs.Text += "Support Staff";
+                                            staffHome.text_LoggedInAs.Text += ", " + mainConnectionClass.staffFirstName;
+
+                                            staffHome.Show();
+                                        }
+                                        this.Close();
                                     }
-                                    this.Close();
+                                    else
+                                    {
+                                    MessageBox.Show("CONTACT ADMIN");
+                                }
                                 }
                                 conn.Close();
                             }
@@ -136,9 +143,9 @@ namespace ModernUI
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        MessageBox.Show(ex.Message);
+                        
                     }
                 }
         }
