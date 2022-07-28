@@ -15,9 +15,9 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border x:Name="border" Background="Transparent" BorderThickness="0">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="7" Direction="330" Color="Black" ShadowDepth="4" Opacity="0.3"/>
+                                <DropShadowEffect BlurRadius="7" Direction="330" Color="#3AB19B" ShadowDepth="4" Opacity="0.3"/>
                             </Border.Effect>
-                            <ContentPresenter x:Name="cp" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.Foreground="White"/>
+                            <ContentPresenter x:Name="cp" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.Foreground="#3AB19B"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
@@ -27,13 +27,13 @@
 
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="Green"/>
+                                <Setter TargetName="border" Property="Background" Value="#3AB19B"/>
                                 <Setter TargetName="cp" Property="TextBlock.Foreground" Value="White"/>
                                 <Setter TargetName="border" Property="CornerRadius" Value="5"/>
                                 <Setter TargetName="border" Property="Cursor" Value="Hand"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="Green"/>
+                                <Setter TargetName="border" Property="Background" Value="#3AB19B"/>
                                 <Setter TargetName="cp" Property="TextBlock.Foreground" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -510,11 +510,11 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
     </WindowChrome.WindowChrome>
-    <Border CornerRadius="5">
+    <Border CornerRadius="30 30 30 30">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                <GradientStop Color="#2E3967"/>
-                <GradientStop Color="#192559" Offset="1.0"/>
+                <GradientStop Color="#BFEEBD"/>
+                <GradientStop Color="#C5E8B7" Offset="1.0"/>
             </LinearGradientBrush>
         </Border.Background>
 
@@ -523,6 +523,10 @@
         <!--Create ticket GRID-->
 
         <Grid x:Name="grid_Supervisor" Margin="3,16,-3,-16" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="241*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto" MinHeight="424.863"/>
@@ -530,16 +534,17 @@
             </Grid.RowDefinitions>
 
             <!--Page Title-->
-            <TextBlock x:Name="titletext_Create" Text="Create Ticket" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1"/>
-            <TextBlock x:Name="titletext_View" Text="View Tickets" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed"/>
-            <TextBlock x:Name="titletext_Reports" Text="View Report" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed"/>
+            <TextBlock x:Name="titletext_Create" Text="Create Ticket" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <TextBlock x:Name="titletext_View" Text="View Tickets" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <TextBlock x:Name="titletext_Reports" Text="View Report" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <TextBlock x:Name="titletext_ManageAccounts" Text="Manage Accounts" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed" Grid.ColumnSpan="3" FontWeight="Bold"/>
 
             <!--Page Content-->
 
             <Grid HorizontalAlignment="Left" 
                     Margin="8,140,0,40"
                     Width="245" Grid.RowSpan="2" 
-                    Grid.Row="1">
+                    Grid.Row="1" Grid.ColumnSpan="2">
 
                 <Button x:Name="button_ManageAccounts" Content="Manage Accounts"
                             Width="222"
@@ -559,7 +564,7 @@
                             VerticalAlignment="Top"
                             Height="50"
                             Background="Transparent"
-                            BorderBrush="Transparent" Click="button_CreateTicket_Click"/>
+                            BorderBrush="Transparent" Click="button_CreateTicket_Click" Width="170"/>
 
                 <Button x:Name="button_ViewTickets" Content="View All Tickets" 
                             Foreground="#F8FEFA" 
@@ -569,7 +574,7 @@
                             VerticalAlignment="Top"
                             Height="50"
                             Background="Transparent"
-                            BorderBrush="Transparent" Click="button_ViewTickets_Click"/>
+                            BorderBrush="Transparent" Click="button_ViewTickets_Click" Width="195"/>
 
                 <Button x:Name="button_Reports" Content="Reports" 
                             Foreground="#F8FEFA" 
@@ -579,7 +584,7 @@
                             VerticalAlignment="Top"
                             Height="50"
                             Background="Transparent"
-                            BorderBrush="Transparent" Click="button_Reports_Click"/>
+                            BorderBrush="Transparent" Click="button_Reports_Click" Width="105"/>
 
                 <Button x:Name="button_SignOut" Content="Sign Out" 
                             Foreground="#F8FEFA" 
@@ -589,7 +594,7 @@
                             VerticalAlignment="Top"
                             Height="50"
                             Background="Transparent"
-                            BorderBrush="Transparent" Click="button_SignOut_Click"/>
+                            BorderBrush="Transparent" Click="button_SignOut_Click" Width="118"/>
 
                 <Button x:Name="button_Exit" Content="Exit" 
                             Foreground="#F8FEFA" 
@@ -599,12 +604,12 @@
                             VerticalAlignment="Top"
                             Height="50"
                             Background="Transparent"
-                            BorderBrush="Transparent"/>
+                            BorderBrush="Transparent" Width="64"/>
             </Grid>
 
             <!--Create GRID-->
-            <Grid Grid.RowSpan="3" Margin="242,140,26,-25" x:Name="grid_CreateTicket" Visibility="Collapsed">
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="32,34,556,527" CornerRadius="5">
+            <Grid Grid.RowSpan="3" Margin="167,140,26,-25" x:Name="grid_CreateTicket" Visibility="Visible" Grid.Column="1">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="32,34,556,527" CornerRadius="5">
                     <StackPanel>
                         <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                                 x:Name="combobox_TicketCategory"
@@ -649,7 +654,7 @@
 
                 <!--TICKET PROBLEM TEXTBOX-->
 
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="29,108,559,453" CornerRadius="5">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="29,108,559,453" CornerRadius="5">
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
@@ -657,6 +662,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock x:Name="text_TicketProblem" 
+                                   Foreground="#3AB19B"
                                    Text="Ticket Problem" 
                                    Style="{StaticResource textHint}" 
                                    MouseDown="text_TicketProblem_MouseDown" 
@@ -665,13 +671,14 @@
                                  Style="{StaticResource textBox}"
                                  Background="transparent"
                                  Height="22" 
+                                 Foreground="#267365"
                                  TextChanged="txtbox_TicketProblem_TextChanged"/>
                     </Grid>
                 </Border>
 
                 <!--TICKET DETAILS TEXTBOX-->
 
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="30,189,557,231" CornerRadius="5">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="30,189,557,231" CornerRadius="5">
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
@@ -679,6 +686,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock x:Name="text_TicketDetails" 
+                                   Foreground="#3AB19B"
                                    Text="Ticket Details"
                                    Style="{StaticResource textHint}" 
                                    MouseDown="text_TicketDetails_MouseDown" />
@@ -686,6 +694,7 @@
                                  TextWrapping="Wrap"
                                       AcceptsReturn="True"
                                       VerticalScrollBarVisibility="Visible"
+                                 Foreground="#267365"
                                  Style="{StaticResource textBox}"
                                  Background="transparent" TextChanged="txtbox_TicketDetails_TextChanged" Grid.ColumnSpan="2" Margin="4,0,5,0"/>
                     </Grid>
@@ -693,7 +702,7 @@
 
                 <!--TICKET ASIGNED TO TEXTBOX-->
 
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="28,396,562,165" CornerRadius="5">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="28,396,562,165" CornerRadius="5">
 
                     <StackPanel>
                         <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
@@ -716,7 +725,7 @@
 
                 <!--TICKET STATUS TEXTBOX-->
 
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="26,463,562,98" CornerRadius="5">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="26,463,562,98" CornerRadius="5">
 
 
                     <StackPanel>
@@ -754,14 +763,15 @@
 
 
                 <!--TICKET ID, REPORTED BY ID, BY NAME-->
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="550,28,367,533" CornerRadius="5">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="550,28,367,533" CornerRadius="5">
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock x:Name="text_ticketID" 
+                        <TextBlock x:Name="text_ticketID"
+                            Foreground="#3AB19B"
                             Text="Ticket ID" 
                             Style="{StaticResource textHint}" 
                             Grid.ColumnSpan="2" Margin="116,1,-122,-1" />
@@ -770,11 +780,11 @@
                             Background="transparent"
                                  FontStyle="Italic"
                                  FontWeight="Bold"
-                                 Foreground="White"
+                                 Foreground="#267365"
                             Height="22" IsEnabled="False"/>
                     </Grid>
                 </Border>
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="548,106,369,455" CornerRadius="5">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="548,106,369,455" CornerRadius="5">
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
@@ -782,6 +792,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock x:Name="text_ReportedByStaffID" 
+                            Foreground="#3AB19B"
                             Text="Reported By ID" 
                             Style="{StaticResource textHint}" 
                             Grid.ColumnSpan="2" Margin="118,-3,-171,3" />
@@ -790,11 +801,11 @@
                             Background="transparent"
                                  FontStyle="Italic"
                                  FontWeight="Bold"
-                                 Foreground="White"
+                                 Foreground="#267365"
                             Height="22" IsEnabled="False"/>
                     </Grid>
                 </Border>
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="548,175,226,386" CornerRadius="5">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="548,175,226,386" CornerRadius="5">
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
@@ -802,6 +813,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock x:Name="text_ReportedByStaffName" 
+                            Foreground="#3AB19B"
                             Text="Reported By Name" 
                             Style="{StaticResource textHint}" 
                             Grid.ColumnSpan="2" Margin="258,0,-192,0"/>
@@ -809,7 +821,7 @@
                             Style="{StaticResource textBox}"
                                  FontStyle="Italic"
                                  FontWeight="Bold"
-                                 Foreground="White"
+                                 Foreground="#267365"
                             Background="transparent" IsEnabled="False"/>
                     </Grid>
                 </Border>
@@ -845,12 +857,20 @@
             </Grid>
 
             <!--View_tickets GRID-->
-            <Grid Grid.RowSpan="3" Margin="242,140,26,-25" x:Name="grid_ViewTickets" Visibility="Collapsed">
+            <Grid Grid.RowSpan="3" Margin="167,140,26,-25" x:Name="grid_ViewTickets" Visibility="Visible" Grid.Column="1">
 
                 <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="497*"/>
+                    </Grid.RowDefinitions>
 
                     <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top">
-                        <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Center" Height="521" VerticalAlignment="Top" Width="950" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn" ColumnWidth="*">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="12*"/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Left" Height="482" VerticalAlignment="Center" Width="962" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn" Grid.ColumnSpan="2">
 
                             <DataGrid.Columns>
 
@@ -864,7 +884,7 @@
             </Grid>
 
             <!--Manage Accounts GRID-->
-            <Grid Grid.RowSpan="3" Margin="242,140,26,31" x:Name="grid_ManageAccounts" Visibility="Visible">
+            <Grid Grid.RowSpan="3" Margin="167,140,26,31" x:Name="grid_ManageAccounts" Visibility="Collapsed" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="393*"/>
                     <ColumnDefinition Width="619*"/>
@@ -895,7 +915,7 @@
                 </ComboBox>
 
                 <!--userid textbox-->
-                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="254,30,269,475" CornerRadius="5" Grid.Column="1">
+                <Border BorderBrush="#267365" BorderThickness="1" Margin="254,30,269,475" CornerRadius="5" Grid.Column="1">
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
@@ -908,13 +928,13 @@
                             Background="transparent"
                             FontStyle="Italic"
                             FontWeight="Bold"
-                            Foreground="White"
+                            Foreground="#267365"
                             Height="22" IsEnabled="False" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10,1,0,1" Width="69"/>
                     </Grid>
                 </Border>
-                <TextBlock x:Name="text_userid" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="378,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" FontSize="22" Foreground="#FFACB0AF"><Run Text="User ID"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="text_userid" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="378,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" FontSize="22" Foreground="#3AB19B"><Run Text="User ID"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
 
-                <TextBlock x:Name="text_role" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="497,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="22" Foreground="#FFACB0AF"><Run Text="User Role"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="text_role" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="497,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="22" Foreground="#3AB19B"><Run Text="User Role"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
 
                 <Button x:Name="button_edit" Content="Edit Role" Style="{StaticResource mainButton}" Margin="251,180,168,307" Grid.Column="1" Click="button_edit_Click" />
 
@@ -922,35 +942,83 @@
             </Grid>
 
             <!--Report GRID-->
-            <Grid Grid.RowSpan="3" Margin="242,140,26,-25" x:Name="grid_Report" Visibility="Collapsed">
+            <Grid Grid.RowSpan="3" Margin="169,140,10,-25" x:Name="grid_Report" Visibility="Collapsed" Grid.Column="1">
+                <Border CornerRadius="30 30 30 30" Height="542" VerticalAlignment="Top" Margin="12,11,23,0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.3,0" EndPoint="0.3,0">
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid Background="White" Margin="16,18,16,13">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="597*"/>
+                            <ColumnDefinition Width="377*"/>
+                        </Grid.ColumnDefinitions>
 
-                <Grid Background="Green"  Margin="56,18,204,73">
-                    <Grid Background="Blue" Margin="20,26,269,204">
-                        <TextBlock x:Name="txtblock_TicketCountLabel" Foreground="LightGray" HorizontalAlignment="Left" Padding="20,40,0,0" Text="All Tickets Count" TextWrapping="Wrap" VerticalAlignment="Top" Height="136" Width="256" TextAlignment="Center" LineHeight="14" FontSize="26" Margin="204,26,0,0" Cursor="Hand" FontWeight="Bold" FontStyle="Italic"/>
-                        <TextBlock x:Name="txtblock_TicketCount" Foreground="White" HorizontalAlignment="Left" Margin="354,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="56" Width="84" TextAlignment="Right" FontSize="40"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                        <Grid Background="#3ab19b" Margin="16,26,372,268" Grid.Column="1" Grid.ColumnSpan="2" >
+                            <TextBlock x:Name="txtblock_TicketCountLabel" Foreground="white" HorizontalAlignment="Left" Padding="20,40,0,0" Text="Overall Ticket Count" TextWrapping="Wrap" VerticalAlignment="Top" Height="136" Width="363" TextAlignment="Center" LineHeight="14" FontSize="26" Margin="6,45,0,0" Cursor="Hand" FontWeight="Bold" FontStyle="Italic"/>
+                            <TextBlock x:Name="txtblock_TicketCount" Foreground="White" HorizontalAlignment="Left" Margin="352,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="85" Width="132" TextAlignment="Right" FontSize="60"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                        </Grid>
+
+                        <Grid Background="#3ab19b" Margin="321,386,372,23" Grid.Column="1" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="207*"/>
+                                <ColumnDefinition Width="67*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="txtblock_OpenTickets" Foreground="White" HorizontalAlignment="Left" Margin="152,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="85" TextAlignment="Right" FontSize="30" Grid.ColumnSpan="2"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_OpenTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="61,30,0,0" Text="Open Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="117" FontSize="20" TextAlignment="Right"/>
+                        </Grid>
+                        <Grid Background="#3ab19b" Margin="22,269,295,137" Grid.Column="1">
+                            <TextBlock x:Name="txtblock_PendingTickets" Foreground="White" HorizontalAlignment="Left" Margin="163,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="44" Width="85" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_PendingTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="14,0,0,0" Text="Pending Tickets" TextWrapping="Wrap" VerticalAlignment="Center" Height="34" Width="152" FontSize="20" TextAlignment="Right"/>
+                        </Grid>
+
+                        <Grid Background="#3ab19b" Margin="321,266,372,137" Grid.Column="1" Grid.ColumnSpan="2">
+                            <TextBlock x:Name="txtblock_ResolvedTickets" Foreground="White" HorizontalAlignment="Left" Margin="184,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="44" Width="54" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_ResolvedTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="22,0,0,0" Text="Resolved Tickets" TextWrapping="Wrap" VerticalAlignment="Center" Height="34" Width="163" FontSize="20" TextAlignment="Right" RenderTransformOrigin="0.21,1.238"/>
+                        </Grid>
+
+                        <Grid Background="#3ab19b" Margin="24,266,29,21" Grid.Column="2">
+                            <TextBlock x:Name="txtblock_IncidentTickets" Foreground="White" HorizontalAlignment="Left" Margin="243,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="44" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_IncidentTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="9,56,0,0" Text="Incident Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="220" FontSize="20" TextAlignment="Right"/>
+                            <TextBlock x:Name="txtblock_ServiceTickets" Foreground="White" HorizontalAlignment="Left" Margin="243,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="44" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_ServiceTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="3,108,0,0" Text="Service Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="223" FontSize="20" TextAlignment="Right"/>
+                            <TextBlock x:Name="txtblock_ChangeTickets" Foreground="White" HorizontalAlignment="Left" Margin="242,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="44" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_ChangeTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="0,158,0,0" Text="Change Request Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="227" FontSize="20" TextAlignment="Right"/>
+                            <TextBlock x:Name="txtblock_CategoryTicketsLabel" HorizontalAlignment="Center" Foreground="White" Margin="0,13,0,0" Text="Category of Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="182" FontSize="20" TextAlignment="Right" RenderTransformOrigin="0.504,0.365" FontWeight="Bold"/>
+                        </Grid>
+
+                        <Grid Background="#3ab19b" Margin="25,25,29,267" Grid.Column="2">
+                            <TextBlock x:Name="txtblock_NumberUsers" Foreground="White" HorizontalAlignment="Left" Margin="227,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="47" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_NumberUsersTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="56,28,0,0" Text="Number of Users" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="158" FontSize="20" TextAlignment="Right" RenderTransformOrigin="0.297,0.638"/>
+                            <TextBlock x:Name="txtblock_NumberSupervisor" Foreground="White" HorizontalAlignment="Left" Margin="223,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="44" Width="52" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_NumberSupervisorTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="-2,87,0,0" Text="Number of Supervisors" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="219" FontSize="20" TextAlignment="Right"/>
+                            <TextBlock x:Name="txtblock_NumberStaff" Foreground="White" HorizontalAlignment="Left" Margin="223,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="52" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="txtblock_NumberStaffTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="23,147,0,0" Text="Number of Staff" TextWrapping="Wrap" VerticalAlignment="Top" Height="49" Width="191" FontSize="20" TextAlignment="Right"/>
+                            <Button x:Name="button_SeeCharts" Content="See Charts" Style="{StaticResource mainButton}" Margin="-574,381,683,-239" RenderTransformOrigin="0.5,0.5" FontSize="20" >
+                                <Button.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform AngleY="-0.34"/>
+                                        <RotateTransform/>
+                                        <TranslateTransform Y="-0.594"/>
+                                    </TransformGroup>
+                                </Button.RenderTransform>
+                            </Button>
+                        </Grid>
+
+
+
                     </Grid>
-
-                    <Grid Background="Blue" Margin="19,335,513,95">
-                        <TextBlock x:Name="txtblock_OpenTickets" Foreground="White" HorizontalAlignment="Left" Margin="97,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="85" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-                        <TextBlock x:Name="txtblock_OpenTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="61,6,0,0" Text="Open Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="117" FontSize="16" TextAlignment="Right"/>
-                    </Grid>
-                    <Grid Background="Blue" Margin="256,334,270,96">
-                        <TextBlock x:Name="txtblock_PendingTickets" Foreground="White" HorizontalAlignment="Left" Margin="97,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="85" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-                        <TextBlock x:Name="txtblock_PendingTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="63,6,0,0" Text="Pending Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="117" FontSize="16" TextAlignment="Right"/>
-                    </Grid>
-
-                    <Grid Background="Blue" Margin="256,426,270,4">
-                        <TextBlock x:Name="txtblock_ResolvedTickets" Foreground="White" HorizontalAlignment="Left" Margin="97,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="85" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-                        <TextBlock x:Name="txtblock_ResolvedTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="63,6,0,0" Text="Resolved Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="117" FontSize="16" TextAlignment="Right"/>
-                    </Grid>
-
-
-                </Grid>
+                </Border>
             </Grid>
 
             <!--User logged in GRID-->
-            <Grid HorizontalAlignment="Left" Height="80" Margin="882,7,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="387">
+            <Grid HorizontalAlignment="Left" Height="80" Margin="807,7,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="387" Grid.Column="1">
                 <TextBlock x:Name="text_LoggedInAs" 
+                    Foreground="#3AB19B"
                     Text="Logged in as "
                            FontSize="22"
                     Style="{StaticResource textHint}" Margin="1,16,3,12" Cursor="Hand" />
