@@ -857,30 +857,18 @@
             </Grid>
 
             <!--View_tickets GRID-->
-            <Grid Grid.RowSpan="3" Margin="167,140,26,-25" x:Name="grid_ViewTickets" Visibility="Visible" Grid.Column="1">
-
+            <Grid Grid.RowSpan="3" Margin="167,140,26,-25" x:Name="grid_ViewTickets" Visibility="Collapsed" Grid.Column="1">
                 <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="497*"/>
-                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="12*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Left" Height="482" VerticalAlignment="Center" Width="962" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
 
-                    <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="12*"/>
-                        </Grid.ColumnDefinitions>
-                        <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Left" Height="482" VerticalAlignment="Center" Width="962" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn" Grid.ColumnSpan="2">
-
-                            <DataGrid.Columns>
-
-                            </DataGrid.Columns>
-                        </DataGrid>
-
-                    </Grid>
-
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
-
             </Grid>
 
             <!--Manage Accounts GRID-->
@@ -891,8 +879,6 @@
                 </Grid.ColumnDefinitions>
 
                 <DataGrid x:Name="dtGridAccounts" IsReadOnly = "true" HorizontalAlignment="Left" Height="448" VerticalAlignment="Top" Width="566" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20"  Grid.ColumnSpan="2" Margin="26,29,0,0" ColumnWidth="*" SelectionChanged="dtGridAccounts_SelectionChanged"/>
-
-
                 <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                                 x:Name="combobox_EditRole"
                                 Background="Transparent"
@@ -983,20 +969,26 @@
                         <Grid Background="#3ab19b" Margin="24,266,29,21" Grid.Column="2">
                             <TextBlock x:Name="txtblock_IncidentTickets" Foreground="White" HorizontalAlignment="Left" Margin="243,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="44" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
                             <TextBlock x:Name="txtblock_IncidentTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="9,56,0,0" Text="Incident Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="220" FontSize="20" TextAlignment="Right"/>
+                           
                             <TextBlock x:Name="txtblock_ServiceTickets" Foreground="White" HorizontalAlignment="Left" Margin="243,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="44" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
                             <TextBlock x:Name="txtblock_ServiceTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="3,108,0,0" Text="Service Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="223" FontSize="20" TextAlignment="Right"/>
+                            
                             <TextBlock x:Name="txtblock_ChangeTickets" Foreground="White" HorizontalAlignment="Left" Margin="242,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="44" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
                             <TextBlock x:Name="txtblock_ChangeTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="0,158,0,0" Text="Change Request Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="227" FontSize="20" TextAlignment="Right"/>
-                            <TextBlock x:Name="txtblock_CategoryTicketsLabel" HorizontalAlignment="Center" Foreground="White" Margin="0,13,0,0" Text="Category of Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="182" FontSize="20" TextAlignment="Right" RenderTransformOrigin="0.504,0.365" FontWeight="Bold"/>
+                            
+                            <TextBlock x:Name="txtblock_CategoryTicketsLabel" HorizontalAlignment="Center" Foreground="White" Margin="0,13,0,0" Text="Category of Tickets" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="182" FontSize="20" TextAlignment="Right" RenderTransformOrigin="0.504,0.365" FontWeight="Bold" FontStyle="Italic" TextDecorations="{x:Null}"/>
                         </Grid>
 
                         <Grid Background="#3ab19b" Margin="25,25,29,267" Grid.Column="2">
                             <TextBlock x:Name="txtblock_NumberUsers" Foreground="White" HorizontalAlignment="Left" Margin="227,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="47" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock x:Name="txtblock_NumberUsersTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="56,28,0,0" Text="Number of Users" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="158" FontSize="20" TextAlignment="Right" RenderTransformOrigin="0.297,0.638"/>
+                            <TextBlock x:Name="txtblock_NumberUsersTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="56,28,0,0" Text="Number of Users" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="158" FontSize="20" TextAlignment="Right" RenderTransformOrigin="0.297,0.638" Cursor="Hand" FontWeight="Bold" FontStyle="Italic"/>
+
                             <TextBlock x:Name="txtblock_NumberSupervisor" Foreground="White" HorizontalAlignment="Left" Margin="223,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="44" Width="52" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
                             <TextBlock x:Name="txtblock_NumberSupervisorTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="-2,87,0,0" Text="Number of Supervisors" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="219" FontSize="20" TextAlignment="Right"/>
+
                             <TextBlock x:Name="txtblock_NumberStaff" Foreground="White" HorizontalAlignment="Left" Margin="223,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="52" TextAlignment="Right" FontSize="30"><Run Text="0"/><LineBreak/><Run/></TextBlock>
                             <TextBlock x:Name="txtblock_NumberStaffTicketsLabel" HorizontalAlignment="Left" Foreground="White" Margin="23,147,0,0" Text="Number of Staff" TextWrapping="Wrap" VerticalAlignment="Top" Height="49" Width="191" FontSize="20" TextAlignment="Right"/>
+
                             <Button x:Name="button_SeeCharts" Content="See Charts" Style="{StaticResource mainButton}" Margin="-574,381,683,-239" RenderTransformOrigin="0.5,0.5" FontSize="20" >
                                 <Button.RenderTransform>
                                     <TransformGroup>
@@ -1008,9 +1000,6 @@
                                 </Button.RenderTransform>
                             </Button>
                         </Grid>
-
-
-
                     </Grid>
                 </Border>
             </Grid>

@@ -99,6 +99,7 @@ namespace ModernUI
                                         txtbox_Username.Clear();
                                         txtbox_Password.Clear();
 
+                                        StaffHomeWindow.userData.ID = reader[0].ToString();
                                         mainConnectionClass.staffID = reader[0].ToString();
                                         mainConnectionClass.staffFirstName = reader[1].ToString();
                                         mainConnectionClass.staffLastName = reader[2].ToString();
@@ -129,7 +130,7 @@ namespace ModernUI
                                     }
                                     else
                                     {
-                                    MessageBox.Show("CONTACT ADMIN");
+                                    MessageBox.Show("CONTACT ADMIN TO ASSIGN ROLE");
                                 }
                                 }
                                 conn.Close();

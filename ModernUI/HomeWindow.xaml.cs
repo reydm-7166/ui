@@ -33,6 +33,7 @@ namespace ModernUI
             dataGrid();
         }
 
+
         void dataGridAccounts()
         {
             string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
@@ -100,15 +101,30 @@ namespace ModernUI
                         case 3:
                             txtblock_ResolvedTickets.Text = reader.GetString(0);
                             break;
-                    }
+                        case 4:
+                            txtblock_NumberUsers.Text = reader.GetString(0);
+                            break;
+                        case 5:
+                            txtblock_NumberSupervisor.Text = reader.GetString(0);
+                            break;
+                        case 6:
+                            txtblock_NumberStaff.Text = reader.GetString(0);
+                            break;
+                        case 7:
+                            txtblock_IncidentTickets.Text = reader.GetString(0);
+                            break;
+                        case 8:
+                            txtblock_ServiceTickets.Text = reader.GetString(0);
+                            break;
+                        case 9:
+                            txtblock_ChangeTickets.Text = reader.GetString(0);
+                            break;
 
+                    }
                 }
                 conn.Close();
             }
             reader.Close();
-
-
-
         }
 
         /// <summary>
@@ -221,6 +237,8 @@ namespace ModernUI
                         combobox_TicketCategory.SelectedIndex = 0;
                         combobox_AssignedTo.SelectedIndex = 0;
                         combobox_TicketStatus.SelectedIndex = 0;
+                        Random rnd = new Random();
+                        txtbox_ticketID.Text = rnd.Next(100, 100000).ToString();
                     }
                     else
                     {
@@ -254,7 +272,9 @@ namespace ModernUI
                 grid_ManageAccounts.Visibility = Visibility.Collapsed;
             }
             ///calls datagrid function
+            ///
             dataGrid();
+            
         }
 
 
@@ -330,14 +350,51 @@ namespace ModernUI
             TicketData(openTickets, opentxbox);
 
             //PENDING TICKETS PARAMETER ////
-            int closetxbox = 2;
+            int pendingtxbox = 2;
             string pendingTickets = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE status='PENDING';";
-            TicketData(pendingTickets, closetxbox);
+            TicketData(pendingTickets, pendingtxbox);
 
             //RESOLVED TICKETS PARAMETER ////
-            int servicetxbox = 3;
+            int resolvedtxbox = 3;
             string resolvedTickets = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE status='RESOLVED';";
-            TicketData(resolvedTickets, servicetxbox);
+            TicketData(resolvedTickets, resolvedtxbox);
+
+
+
+            //NUMBER OF USERS PARAMETER ////
+            int userstxtbox = 4;
+            string allUsers = "SELECT COUNT(id) AS TicketCount FROM users";
+            TicketData(allUsers, userstxtbox);
+
+            //SUPERVISOR PARAMETER ////
+            int supervisortxtbox = 5;
+            string supervisorUsers = "SELECT COUNT(id) AS TicketCount FROM users WHERE role=1";
+            TicketData(supervisorUsers, supervisortxtbox);
+
+            //STAFF USER PARAMETER ////
+            int stafftxtbox = 6;
+            string staffUsers = "SELECT COUNT(id) AS TicketCount FROM users WHERE role=2";
+            TicketData(staffUsers, stafftxtbox);
+
+
+
+            //INCIDENT PARAMETER ////
+            int incidenttxtbox = 7;
+            string incidentCategory = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE issue_title='Service request';";
+            TicketData(incidentCategory, incidenttxtbox);
+
+            //SERVICE PARAMETER ////
+            int servicetxtbox = 8;
+            string serviceCategory = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE issue_title='Incident';";
+            TicketData(serviceCategory, servicetxtbox);
+
+            //CHANGE REQ USER PARAMETER ////
+            int changetxtbox = 9;
+            string changeCategory = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE issue_title='Change request';";
+            TicketData(changeCategory, changetxtbox);
+
+
+
         }
 
         private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -345,15 +402,7 @@ namespace ModernUI
             if (e.PropertyType == typeof(System.DateTime))
                 (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
         }
-
-        /// <summary>
-        /// function to get the data from the tickets table and show it to the reports. ## reports ticket tab ###
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="control"></param>
-        /// 
        
-
         private void dtGridAccounts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid row = (DataGrid)sender;
@@ -392,7 +441,14 @@ namespace ModernUI
 
             MySqlCommand cmd = new MySqlCommand("UPDATE `mydb`.`users` SET `role` = @role WHERE id = @userID", connection);
 
-            cmd.Parameters.AddWithValue("@role", (combobox_EditRole.Text == "Supervisor") ? 1 : 2);
+            if(combobox_EditRole.Text == "Supervisor")
+            {
+                cmd.Parameters.AddWithValue("@role", 1);
+            } else
+            {
+                cmd.Parameters.AddWithValue("@role", 2);
+            }
+           
             cmd.Parameters.AddWithValue("@userID", int.Parse(txtbox_userID.Text));
 
             connection.Open();
@@ -401,10 +457,6 @@ namespace ModernUI
             {
                 dataGridAccounts();
                 MessageBox.Show("Successfully Edited");
-            }
-            else
-            {
-                MessageBox.Show("Something is Wrong!");
             }
         }
 

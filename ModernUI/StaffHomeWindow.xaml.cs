@@ -31,7 +31,9 @@ namespace ModernUI
         {
             public static string ID  { get; set; }
             public static string Name { get; set; }
-            public static string Dog { get; set; }
+            public static string ReportedID { get; set; }
+            public static string ReportedName { get; set; }
+            public static string TicketID { get; set; }
         }
 
         /// for buttons. ticket problem and steps to resolve
@@ -91,10 +93,12 @@ namespace ModernUI
         private void button_ViewTickets_Click(object sender, RoutedEventArgs e)
         {
             grid_ViewTickets.Visibility = Visibility.Visible;
-            titletext_View.Visibility = Visibility.Visible;
-            button_WorkTicket.FontWeight = FontWeights.SemiBold;
 
             titletext_Create.Visibility = Visibility.Collapsed;
+            titletext_View.Visibility = Visibility.Visible;
+
+            button_WorkTicket.FontWeight = FontWeights.SemiBold;
+
             grid_CreateTicket.Visibility = Visibility.Collapsed;
 
             dataGrid();
@@ -141,11 +145,16 @@ namespace ModernUI
                         while (reader.Read())
                         {
                             combobox_TicketCategory.Text = row_select["Ticket Category"].ToString();
-                            text_TicketProblem.Text = row_select["Ticket Problem"].ToString();
-                            text_TicketDetails.Text = reader.GetString("details").ToString();
+
+                            txtbox_TicketProblem.Text = row_select["Ticket Problem"].ToString();
+                            txtbox_TicketDetails.Text = reader.GetString("details").ToString();
+
                             txtbox_ticketID.Text = reader.GetInt32("number").ToString();
                             txtbox_AssignedTo.Text = reader.GetString("assigned_to");
 
+                            userData.ReportedID = reader.GetString("reported_by_id");
+                            userData.ReportedName = reader.GetString("reported_by_name");
+                            userData.TicketID = reader.GetString("id");
                             combobox_TicketStatus.Text = "RESOLVED";
 
                         }
@@ -168,6 +177,72 @@ namespace ModernUI
             MainWindow main = new MainWindow();
             main.Show();
             this.Close();
+        }
+
+        private void button_Submit_Click(object sender, RoutedEventArgs e)
+        {
+            if (combobox_TicketCategory.Text != "Ticket Category"
+               && txtbox_TicketSolution.Text != "" && txtbox_TicketSolution.Text.Length > 20)
+            {
+                try
+                {
+                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+
+                    MySqlConnection conn = new MySqlConnection(connectionString);
+
+                    string query = "INSERT INTO mydb.resolved(user_id, number, issue_title, problem, details, solution, reported_by_id, reported_by_name, resolved_by_id, resolved_by_name, assigned_to, status)" +
+                        " VALUES('" + int.Parse(userData.ID) + "','" + txtbox_ticketID.Text + "','" + combobox_TicketCategory.Text + "','" + txtbox_TicketProblem.Text + "','" + txtbox_TicketDetails.Text 
+                        + "','" + txtbox_TicketSolution.Text + "','" + userData.ReportedID + "','" + userData.ReportedName + "','" + userData.ID + "','" + userData.Name + "','" + userData.Name + "','" + combobox_TicketStatus.Text + "')";
+
+                    MySqlCommand command = new MySqlCommand(query, conn);
+                    conn.Open();
+
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("Ticket Submitted Successfully");
+                        conn.Close();
+                        delete();
+
+                        dataGrid();
+                        grid_ViewTickets.Visibility = Visibility.Visible;
+                        grid_CreateTicket.Visibility = Visibility.Collapsed;
+
+                        titletext_View.Visibility = Visibility.Visible;
+                        titletext_Create.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Something went wrong! Please check the input carefully");
+                    }
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Fill in approriate input");
+            }
+        }
+
+        void delete()
+        {
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+
+            MySqlConnection conn = new MySqlConnection(connectionString);
+
+            string query = "DELETE FROM tickets WHERE id = '"+ userData.TicketID +"'";
+            MySqlCommand command = new MySqlCommand(query, conn);
+           
+            conn.Open();
+
+
+            if (command.ExecuteNonQuery() == 1)
+            {
+                conn.Close();
+            }
         }
     }
 }
