@@ -535,7 +535,8 @@
 
             <!--Page Title-->
             <TextBlock x:Name="titletext_Create" Text="Create Ticket" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold"/>
-            <TextBlock x:Name="titletext_View" Text="View Tickets" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <TextBlock x:Name="titletext_View" Text="View All Tickets" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <TextBlock x:Name="titletext_ViewResolved" Text="View Resolved Tickets" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed" Grid.ColumnSpan="3" FontWeight="Bold"/>
             <TextBlock x:Name="titletext_Reports" Text="View Report" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed" Grid.ColumnSpan="2" FontWeight="Bold"/>
             <TextBlock x:Name="titletext_ManageAccounts" Text="Manage Accounts" Foreground="#3AB19B" Style="{StaticResource pageTitle}" Margin="-1,76,1,293" Grid.Row="1" Visibility="Collapsed" Grid.ColumnSpan="3" FontWeight="Bold"/>
 
@@ -554,12 +555,12 @@
                             VerticalAlignment="Top"
                             Height="50"
                             Background="Transparent"
-                            BorderBrush="Transparent" Click="button_ManageAccounts_Click" Margin="0,277,0,0"/>
+                            BorderBrush="Transparent" Click="button_ManageAccounts_Click" Margin="0,303,0,0"/>
 
                 <Button x:Name="button_CreateTicket" Content="Create Ticket" 
                             Foreground="#F8FEFA" 
                             FontSize="25"
-                            Margin="0,52,0,0" 
+                            Margin="0,64,0,0" 
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Height="50"
@@ -569,7 +570,7 @@
                 <Button x:Name="button_ViewTickets" Content="View All Tickets" 
                             Foreground="#F8FEFA" 
                             FontSize="25"
-                            Margin="0,132,0,0" 
+                            Margin="0,146,0,0" 
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Height="50"
@@ -579,7 +580,7 @@
                 <Button x:Name="button_Reports" Content="Reports" 
                             Foreground="#F8FEFA" 
                             FontSize="25"
-                            Margin="77,207,0,0" 
+                            Margin="77,223,0,0" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Height="50"
@@ -589,7 +590,7 @@
                 <Button x:Name="button_SignOut" Content="Sign Out" 
                             Foreground="#F8FEFA" 
                             FontSize="25"
-                            Margin="0,344,0,0" 
+                            Margin="0,380,0,0" 
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Height="50"
@@ -599,7 +600,7 @@
                 <Button x:Name="button_Exit" Content="Exit" 
                             Foreground="#F8FEFA" 
                             FontSize="25"
-                            Margin="0,412,0,0" 
+                            Margin="0,462,0,0" 
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Height="50"
@@ -608,7 +609,7 @@
             </Grid>
 
             <!--Create GRID-->
-            <Grid Grid.RowSpan="3" Margin="167,140,26,-25" x:Name="grid_CreateTicket" Visibility="Visible" Grid.Column="1">
+            <Grid Grid.RowSpan="3" Margin="167,140,26,-25" x:Name="grid_CreateTicket" Visibility="Collapsed" Grid.Column="1">
                 <Border BorderBrush="#267365" BorderThickness="1" Margin="32,34,556,527" CornerRadius="5">
                     <StackPanel>
                         <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
@@ -857,17 +858,28 @@
             </Grid>
 
             <!--View_tickets GRID-->
-            <Grid Grid.RowSpan="3" Margin="167,140,26,-25" x:Name="grid_ViewTickets" Visibility="Collapsed" Grid.Column="1">
-                <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top">
+            <Grid Grid.RowSpan="3" Margin="167,140,26,-25" x:Name="grid_ViewTickets" Visibility="Visible" Grid.Column="1">
+                <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top" Width="1003">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="12*"/>
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Left" Height="482" VerticalAlignment="Center" Width="962" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn" Grid.ColumnSpan="2">
-                        <DataGrid.Columns>
+                    <Grid x:Name="grid_ViewAll" Visibility="Collapsed" Margin="1,0,2,0" Grid.ColumnSpan="2">
+                        <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Center" Height="422" VerticalAlignment="Top" Width="940" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn" Margin="0,-7,0,0">
+                            <DataGrid.Columns>
 
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Grid x:Name="grid_ViewResolved" Visibility="Visible" Margin="1,0,2,0" Grid.ColumnSpan="2">
+                        <DataGrid x:Name="dtGridResolve" IsReadOnly = "true" HorizontalAlignment="Center" Height="422" VerticalAlignment="Top" Width="940" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" ItemStringFormat="{}{0:dd/MM/yy}" AutoGeneratingColumn="OnAutoGeneratingColumn" Margin="0,-7,0,0">
+                            <DataGrid.Columns>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Button x:Name="button_TicketsAll" Content="View All Tickets" Width="Auto" Style="{StaticResource mainButton}" Margin="462,451,85,-99" Grid.Column="1" RenderTransformOrigin="0.452,0.529" FontSize="20" Click="button_TicketsAll_Click"/>
+                    <Button x:Name="button_Resolved" Content="View Resolved Tickets" Width="Auto" Style="{StaticResource mainButton}" Margin="36,452,529,-100" Grid.Column="1" RenderTransformOrigin="0.452,0.529" FontSize="20" Click="button_Resolved_Click"/>
                 </Grid>
             </Grid>
 
