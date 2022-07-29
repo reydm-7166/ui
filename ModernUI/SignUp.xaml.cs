@@ -86,7 +86,7 @@ namespace ModernUI
 
         private void button_Signup_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
             if (txtbox_Firstname.Text != "" && txtbox_Lastname.Text != "" && txtbox_Username.Text != "" && txtbox_Password.Password != "")
             {
                 if (txtbox_Username.Text.Length > 8 && txtbox_Password.Password.Length > 8)

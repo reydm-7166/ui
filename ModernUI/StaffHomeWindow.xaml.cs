@@ -70,7 +70,7 @@ namespace ModernUI
         void dataGrid()
         {
 
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -127,7 +127,7 @@ namespace ModernUI
             {
                 workGrid();
 
-                string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+                string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
 
                 MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -192,13 +192,13 @@ namespace ModernUI
             {
                 try
                 {
-                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
-
+                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+                    DateTime aDate = DateTime.Now;
                     MySqlConnection conn = new MySqlConnection(connectionString);
 
-                    string query = "INSERT INTO mydb.resolved(user_id, number, issue_title, problem, details, solution, reported_by_id, reported_by_name, resolved_by_id, resolved_by_name, assigned_to, status)" +
+                    string query = "INSERT INTO mydb.resolved(user_id, number, issue_title, problem, details, solution, reported_by_id, reported_by_name, resolved_by_id, resolved_by_name, assigned_to, status, date_created, date_updated)" +
                         " VALUES('" + int.Parse(userData.ID) + "','" + txtbox_ticketID.Text + "','" + combobox_TicketCategory.Text + "','" + txtbox_TicketProblem.Text + "','" + txtbox_TicketDetails.Text 
-                        + "','" + txtbox_TicketSolution.Text + "','" + userData.ReportedID + "','" + userData.ReportedName + "','" + userData.ID + "','" + userData.Name + "','" + userData.Name + "','" + combobox_TicketStatus.Text + "')";
+                        + "','" + txtbox_TicketSolution.Text + "','" + userData.ReportedID + "','" + userData.ReportedName + "','" + userData.ID + "','" + userData.Name + "','" + userData.Name + "','" + combobox_TicketStatus.Text + "','" + aDate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + aDate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
 
                     MySqlCommand command = new MySqlCommand(query, conn);
                     conn.Open();
@@ -235,7 +235,7 @@ namespace ModernUI
 
         void delete()
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
 
             MySqlConnection conn = new MySqlConnection(connectionString);
 

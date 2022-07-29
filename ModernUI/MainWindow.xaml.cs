@@ -67,7 +67,7 @@ namespace ModernUI
             // PASSWORD IF NOT EMPTY. 
             ///////////////////////////////////////////////
 
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
             MySqlConnection conn = new MySqlConnection(connectionString);
 
             string query = "SELECT * FROM users WHERE username=@username && password=@password";
