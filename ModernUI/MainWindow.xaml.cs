@@ -67,7 +67,7 @@ namespace ModernUI
             // PASSWORD IF NOT EMPTY. 
             ///////////////////////////////////////////////
 
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
             MySqlConnection conn = new MySqlConnection(connectionString);
 
             string query = "SELECT * FROM users WHERE username=@username && password=@password";
@@ -130,7 +130,7 @@ namespace ModernUI
                                     }
                                     else
                                     {
-                                    MessageBox.Show("CONTACT ADMIN TO ASSIGN ROLE");
+                                    MessageBox.Show("CONTACT ADMIN TO ASSIGN ROLE", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                                 }
                                 }
                                 conn.Close();
@@ -138,7 +138,7 @@ namespace ModernUI
                             else
                             {
                                 conn.Close();
-                                MessageBox.Show("Wrong Credentials");
+                                MessageBox.Show("Wrong Credentials", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                             reader.Close();
                         }

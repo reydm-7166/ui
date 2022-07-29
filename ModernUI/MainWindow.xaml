@@ -37,7 +37,7 @@
 
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Sign Up" Style="{StaticResource TitleText}" />
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam faucibus dolor lorem." Opacity="0.8" Margin="20 30 20 30" Style="{StaticResource NormalText}" />
+                    <TextBlock Text="Sign Up Now and Get ready to provide customer support!" Opacity="0.8" Margin="20 30 20 30" Style="{StaticResource NormalText}" />
                     <Button x:Name="button_SignUp" Content="Sign Up" Style="{StaticResource button}" Click="button_SignUp_Click" />
                 </StackPanel>
             </Grid>
