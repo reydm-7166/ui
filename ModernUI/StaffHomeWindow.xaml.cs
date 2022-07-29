@@ -70,7 +70,7 @@ namespace ModernUI
         void dataGrid()
         {
 
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -127,7 +127,7 @@ namespace ModernUI
             {
                 workGrid();
 
-                string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+                string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
 
                 MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -171,6 +171,12 @@ namespace ModernUI
             }
         }
 
+        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyType == typeof(System.DateTime))
+                (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
+        }
+
         private void button_SignOut_Click(object sender, RoutedEventArgs e)
         {
             userData.ID = "";
@@ -186,7 +192,7 @@ namespace ModernUI
             {
                 try
                 {
-                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
 
                     MySqlConnection conn = new MySqlConnection(connectionString);
 
@@ -199,7 +205,7 @@ namespace ModernUI
 
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Ticket Submitted Successfully");
+                        MessageBox.Show("Ticket Submitted Successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                         conn.Close();
                         delete();
 
@@ -212,7 +218,7 @@ namespace ModernUI
                     }
                     else
                     {
-                        MessageBox.Show("Something went wrong! Please check the input carefully");
+                        MessageBox.Show("Something went wrong! Please check the input carefully", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     conn.Close();
                 }
@@ -223,13 +229,13 @@ namespace ModernUI
             }
             else
             {
-                MessageBox.Show("Fill in approriate input");
+                MessageBox.Show("Fill in approriate input", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         void delete()
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
 
             MySqlConnection conn = new MySqlConnection(connectionString);
 

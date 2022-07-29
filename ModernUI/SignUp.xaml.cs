@@ -86,7 +86,7 @@ namespace ModernUI
 
         private void button_Signup_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
             if (txtbox_Firstname.Text != "" && txtbox_Lastname.Text != "" && txtbox_Username.Text != "" && txtbox_Password.Password != "")
             {
                 if (txtbox_Username.Text.Length > 8 && txtbox_Password.Password.Length > 8)
@@ -103,7 +103,7 @@ namespace ModernUI
 
                         if (command.ExecuteNonQuery() == 1)
                         {
-                            MessageBox.Show("Registered Successfully");
+                            MessageBox.Show("Registered Successfully!", "Information",MessageBoxButton.OK, MessageBoxImage.Information);
                             txtbox_Firstname.Clear();
                             txtbox_Lastname.Clear();
                             txtbox_Username.Clear();
@@ -111,7 +111,7 @@ namespace ModernUI
                         }
                         else
                         {
-                            MessageBox.Show("Something is wrong! Please check the input carefully");
+                            MessageBox.Show("Something is wrong! Please check the input carefully", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         connection.Close();
                     }
@@ -122,12 +122,12 @@ namespace ModernUI
                 }
                 else
                 {
-                    MessageBox.Show("Username or Password must be atleast 8 characters above!");
+                    MessageBox.Show("Username or Password must be atleast 8 characters above!", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Inputs cannot be empty!");
+                MessageBox.Show("Inputs cannot be empty!", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

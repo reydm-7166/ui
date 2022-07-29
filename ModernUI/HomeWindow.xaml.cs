@@ -36,7 +36,7 @@ namespace ModernUI
 
         void dataGridAccounts()
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -52,7 +52,7 @@ namespace ModernUI
 
         void dataGrid()
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -74,7 +74,7 @@ namespace ModernUI
         void TicketData(string query, int control)
         {
 
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
             MySqlConnection conn = new MySqlConnection(connectionString);
 
             MySqlCommand command = new MySqlCommand(query, conn);
@@ -132,7 +132,7 @@ namespace ModernUI
         /// </summary>
         void combo()
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
             MySqlConnection conn = new MySqlConnection(connectionString);
 
 
@@ -154,12 +154,6 @@ namespace ModernUI
                     }
                     conn.Close();
                 }
-                else
-                {
-                    conn.Close();
-                    MessageBox.Show("mali bonak");
-                }
-                reader.Close();
             }
             catch (Exception ex)
             {
@@ -219,7 +213,7 @@ namespace ModernUI
             {
                 try
                 {
-                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
 
                     MySqlConnection conn = new MySqlConnection(connectionString);
 
@@ -231,7 +225,7 @@ namespace ModernUI
 
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Ticket Submitted Successfully");
+                        MessageBox.Show("Ticket Submitted Successfully","Information", MessageBoxButton.OK, MessageBoxImage.Information);
                         txtbox_TicketProblem.Clear();
                         txtbox_TicketDetails.Clear();
                         combobox_TicketCategory.SelectedIndex = 0;
@@ -242,7 +236,7 @@ namespace ModernUI
                     }
                     else
                     {
-                        MessageBox.Show("Something is wrong! Please check the input carefully");
+                        MessageBox.Show("Something is wrong! Please check the input carefully", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     conn.Close();
                 }
@@ -253,7 +247,7 @@ namespace ModernUI
             }
             else
             {
-                MessageBox.Show("Fill in approriate input");
+                MessageBox.Show("Fill in approriate input", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -410,7 +404,7 @@ namespace ModernUI
 
             if (row_select != null)
             {
-                string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+                string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
 
                 MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -435,30 +429,39 @@ namespace ModernUI
 
         private void button_edit_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
-
-            MySqlConnection connection = new MySqlConnection(connectionString);
-
-            MySqlCommand cmd = new MySqlCommand("UPDATE `mydb`.`users` SET `role` = @role WHERE id = @userID", connection);
-
-            if(combobox_EditRole.Text == "Supervisor")
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            if (combobox_EditRole.Text != "")
             {
-                cmd.Parameters.AddWithValue("@role", 1);
-            } else
-            {
-                cmd.Parameters.AddWithValue("@role", 2);
-            }
-           
-            cmd.Parameters.AddWithValue("@userID", int.Parse(txtbox_userID.Text));
+                try
+                {
 
-            connection.Open();
+                    MySqlConnection connection = new MySqlConnection(connectionString);
 
-            if (cmd.ExecuteNonQuery() == 1)
-            {
-                dataGridAccounts();
-                MessageBox.Show("Successfully Edited");
+                    MySqlCommand cmd = new MySqlCommand("UPDATE `mydb`.`users` SET `role` = @role WHERE id = @userID", connection);
+
+                    if (combobox_EditRole.Text == "Supervisor")
+                    {
+                        cmd.Parameters.AddWithValue("@role", 1);
+                    } else
+                    {
+                        cmd.Parameters.AddWithValue("@role", 2);
+                    }
+
+                    cmd.Parameters.AddWithValue("@userID", int.Parse(txtbox_userID.Text));
+
+                    connection.Open();
+
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        dataGridAccounts();
+                        MessageBox.Show("Successfully Edited","Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Please pick a user to edit","Save Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
-
     }
 }

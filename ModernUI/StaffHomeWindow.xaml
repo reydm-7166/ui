@@ -810,7 +810,7 @@
             <!--View_tickets GRID-->
             <Grid Grid.RowSpan="3" Margin="242,140,26,-25" x:Name="grid_ViewTickets" Visibility="Visible">
                 <Grid HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top">
-                    <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Center" Height="521" VerticalAlignment="Top" Width="950" ItemsSource="{Binding}" GridLinesVisibility="All" FontSize="20" SelectionChanged="dtGrid_SelectionChanged">
+                    <DataGrid x:Name="dtGrid" IsReadOnly = "true" HorizontalAlignment="Center" Height="521" VerticalAlignment="Top" Width="950" ItemsSource="{Binding}" GridLinesVisibility="All" ItemStringFormat="{}{0:dd/MM/yy}" ColumnWidth="*" AutoGeneratingColumn="OnAutoGeneratingColumn" FontSize="20" SelectionChanged="dtGrid_SelectionChanged" Cursor="Hand">
                         <DataGrid.Columns>
 
                         </DataGrid.Columns>
@@ -819,12 +819,14 @@
             </Grid>
 
             <!--User logged in GRID-->
-            <Grid HorizontalAlignment="Left" Height="80" Margin="882,7,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="387">
+            <Grid HorizontalAlignment="Left" Height="80" Margin="807,7,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="462">
+                <Image Source="/Images/user-128.png" Height="49" VerticalAlignment="Top" Margin="8,8,409,0"/>
                 <TextBlock x:Name="text_LoggedInAs" 
                            Foreground="#3AB19B"
                     Text="Logged in as "
-                           FontSize="22"
-                    Style="{StaticResource textHint}" Margin="1,16,3,12" Cursor="Hand" />
+                           FontSize="20"
+                           FontWeight="Bold"
+                    Style="{StaticResource textHint}" Margin="62,16,3,12" Cursor="Hand" />
             </Grid>
 
 

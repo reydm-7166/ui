@@ -10,6 +10,8 @@
     <None Remove="Images\close.png" />
     <None Remove="Images\Email.png" />
     <None Remove="Images\Lock.png" />
+    <None Remove="Images\Reports.svg.png" />
+    <None Remove="Images\user-128.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +35,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Lock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Reports.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\user-128.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
