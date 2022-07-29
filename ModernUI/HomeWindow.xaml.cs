@@ -31,12 +31,13 @@ namespace ModernUI
             combo();
             dataGridAccounts();
             dataGrid();
+            dataGridResolved();
         }
 
 
         void dataGridAccounts()
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -52,7 +53,7 @@ namespace ModernUI
 
         void dataGrid()
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -62,6 +63,20 @@ namespace ModernUI
             dt.Load(cmd.ExecuteReader());
             connection.Close();
             dtGrid.DataContext = dt;
+        }
+
+        void dataGridResolved()
+        {
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+
+            MySqlCommand cmd = new MySqlCommand("select user_id As 'User ID', number As 'Ticket Number', issue_title As 'Ticket Category', problem as 'Ticket Problem', details As 'Ticket Details', solution As 'Ticket Solution', reported_by_name As 'Reported By', resolved_by_name As 'Resolved By', assigned_to As 'Assigned To', status As 'Ticket Status', date_created As 'Date Created', date_updated As 'Date Updated' from resolved", connection);
+            connection.Open();
+            DataTable dtr = new DataTable();
+            dtr.Load(cmd.ExecuteReader());
+            connection.Close();
+            dtGridResolve.DataContext = dtr;
         }
 
 
@@ -74,7 +89,7 @@ namespace ModernUI
         void TicketData(string query, int control)
         {
 
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
             MySqlConnection conn = new MySqlConnection(connectionString);
 
             MySqlCommand command = new MySqlCommand(query, conn);
@@ -132,7 +147,7 @@ namespace ModernUI
         /// </summary>
         void combo()
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
             MySqlConnection conn = new MySqlConnection(connectionString);
 
 
@@ -213,11 +228,13 @@ namespace ModernUI
             {
                 try
                 {
-                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+                    string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
 
                     MySqlConnection conn = new MySqlConnection(connectionString);
-
-                    string query = "INSERT INTO mydb.tickets(user_id, number, issue_title, problem, details, reported_by_id, reported_by_name, assigned_to, status) VALUES('" + int.Parse(txtbox_ReportedByStaffID.Text) + "','" + txtbox_ticketID.Text + "','" + combobox_TicketCategory.Text + "','" + txtbox_TicketProblem.Text + "','" + txtbox_TicketDetails.Text + "','" + txtbox_ReportedByStaffID.Text + "','" + txtbox_ReportedByStaffName.Text + "','" + combobox_AssignedTo.Text + "','" + combobox_TicketStatus.Text + "')";
+                    DateTime aDate = DateTime.Now;
+                    string query = "INSERT INTO mydb.tickets(user_id, number, issue_title, problem, details, reported_by_id, reported_by_name, assigned_to, status, date_created, date_updated) " +
+                        "VALUES('" + int.Parse(txtbox_ReportedByStaffID.Text) + "','" + txtbox_ticketID.Text + "','" + combobox_TicketCategory.Text + "','" + txtbox_TicketProblem.Text + "','" 
+                        + txtbox_TicketDetails.Text + "','" + txtbox_ReportedByStaffID.Text + "','" + txtbox_ReportedByStaffName.Text + "','" + combobox_AssignedTo.Text + "','" + combobox_TicketStatus.Text + "','" + aDate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + aDate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
 
                     MySqlCommand command = new MySqlCommand(query, conn);
                     conn.Open();
@@ -259,11 +276,15 @@ namespace ModernUI
                 grid_CreateTicket.Visibility = Visibility.Collapsed;
                 titletext_Create.Visibility = Visibility.Collapsed;
                 titletext_Reports.Visibility = Visibility.Collapsed;
+                titletext_ViewResolved.Visibility = Visibility.Collapsed;
                 grid_Report.Visibility = Visibility.Collapsed;
                 titletext_ManageAccounts.Visibility = Visibility.Collapsed;
                 titletext_View.Visibility = Visibility.Visible;
                 grid_ViewTickets.Visibility = Visibility.Visible;
                 grid_ManageAccounts.Visibility = Visibility.Collapsed;
+                grid_ViewResolved.Visibility = Visibility.Collapsed;
+                grid_ViewAll.Visibility = Visibility.Visible;
+
             }
             ///calls datagrid function
             ///
@@ -279,11 +300,14 @@ namespace ModernUI
                 grid_CreateTicket.Visibility = Visibility.Visible;
                 titletext_View.Visibility = Visibility.Collapsed;
                 titletext_Create.Visibility = Visibility.Visible;
+                titletext_ViewResolved.Visibility = Visibility.Collapsed;
                 titletext_Reports.Visibility = Visibility.Collapsed;
                 titletext_ManageAccounts.Visibility = Visibility.Collapsed;
                 grid_Report.Visibility = Visibility.Collapsed;
                 grid_ViewTickets.Visibility = Visibility.Collapsed;
                 grid_ManageAccounts.Visibility = Visibility.Collapsed;
+                grid_ViewResolved.Visibility = Visibility.Collapsed;
+
             }
         }
 
@@ -292,10 +316,12 @@ namespace ModernUI
             grid_ManageAccounts.Visibility = Visibility.Visible;
             grid_CreateTicket.Visibility = Visibility.Collapsed;
             titletext_View.Visibility = Visibility.Collapsed;
+            titletext_ViewResolved.Visibility = Visibility.Collapsed;
             titletext_Create.Visibility = Visibility.Collapsed;
             titletext_Reports.Visibility = Visibility.Collapsed;
             titletext_ManageAccounts.Visibility = Visibility.Visible;
             grid_Report.Visibility = Visibility.Collapsed;
+            grid_ViewResolved.Visibility = Visibility.Collapsed;
             grid_ViewTickets.Visibility = Visibility.Collapsed;
 
             ///calls datagrid function
@@ -315,10 +341,12 @@ namespace ModernUI
             {
                 grid_CreateTicket.Visibility = Visibility.Collapsed;
                 titletext_View.Visibility = Visibility.Collapsed;
+                titletext_ViewResolved.Visibility = Visibility.Collapsed;
                 titletext_Create.Visibility = Visibility.Collapsed;
                 titletext_Reports.Visibility = Visibility.Visible;
                 titletext_ManageAccounts.Visibility = Visibility.Collapsed;
 
+                grid_ViewResolved.Visibility = Visibility.Collapsed;
                 grid_Report.Visibility = Visibility.Visible;
                 grid_ViewTickets.Visibility = Visibility.Collapsed;
                 grid_ManageAccounts.Visibility = Visibility.Collapsed;
@@ -404,7 +432,7 @@ namespace ModernUI
 
             if (row_select != null)
             {
-                string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+                string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
 
                 MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -429,7 +457,7 @@ namespace ModernUI
 
         private void button_edit_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=06150318Dar$;";
+            string connectionString = "SERVER=localhost;DATABASE=mydb;UID=root;PASSWORD=admin;";
             if (combobox_EditRole.Text != "")
             {
                 try
@@ -462,6 +490,36 @@ namespace ModernUI
                     MessageBox.Show("Please pick a user to edit","Save Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void button_Resolved_Click(object sender, RoutedEventArgs e)
+        {
+            grid_CreateTicket.Visibility = Visibility.Collapsed;
+            titletext_View.Visibility = Visibility.Collapsed;
+            titletext_ViewResolved.Visibility = Visibility.Visible;
+            titletext_Create.Visibility = Visibility.Collapsed;
+            titletext_Reports.Visibility = Visibility.Collapsed;
+            titletext_ManageAccounts.Visibility = Visibility.Collapsed;
+            grid_ViewResolved.Visibility = Visibility.Visible;
+            grid_Report.Visibility = Visibility.Collapsed;
+            grid_ViewTickets.Visibility = Visibility.Visible;
+            grid_ViewAll.Visibility = Visibility.Collapsed;
+            grid_ManageAccounts.Visibility = Visibility.Collapsed;
+        }
+
+        private void button_TicketsAll_Click(object sender, RoutedEventArgs e)
+        {
+            grid_CreateTicket.Visibility = Visibility.Collapsed;
+            titletext_View.Visibility = Visibility.Visible;
+            titletext_ViewResolved.Visibility = Visibility.Collapsed;
+            titletext_Create.Visibility = Visibility.Collapsed;
+            titletext_Reports.Visibility = Visibility.Collapsed;
+            titletext_ManageAccounts.Visibility = Visibility.Collapsed;
+            grid_ViewResolved.Visibility = Visibility.Collapsed;
+            grid_Report.Visibility = Visibility.Collapsed;
+            grid_ViewTickets.Visibility = Visibility.Visible;
+            grid_ViewAll.Visibility = Visibility.Visible;
+            grid_ManageAccounts.Visibility = Visibility.Collapsed;
         }
     }
 }
