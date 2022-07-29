@@ -590,7 +590,7 @@
                             VerticalAlignment="Top"
                             Height="50"
                             Background="Transparent"
-                            BorderBrush="Transparent" Width="64"/>
+                            BorderBrush="Transparent" Width="64" Click="button_Exit_Click"/>
             </Grid>
 
             <!--Work GRID-->

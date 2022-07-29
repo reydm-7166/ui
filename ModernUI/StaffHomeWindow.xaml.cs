@@ -250,5 +250,10 @@ namespace ModernUI
                 conn.Close();
             }
         }
+
+        private void button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

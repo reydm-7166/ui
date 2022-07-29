@@ -402,12 +402,12 @@ namespace ModernUI
 
             //INCIDENT PARAMETER ////
             int incidenttxtbox = 7;
-            string incidentCategory = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE issue_title='Service request';";
+            string incidentCategory = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE issue_title='Incident';";
             TicketData(incidentCategory, incidenttxtbox);
 
             //SERVICE PARAMETER ////
             int servicetxtbox = 8;
-            string serviceCategory = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE issue_title='Incident';";
+            string serviceCategory = "SELECT COUNT(id) AS TicketCount FROM tickets WHERE issue_title='Service request';";
             TicketData(serviceCategory, servicetxtbox);
 
             //CHANGE REQ USER PARAMETER ////
@@ -520,6 +520,11 @@ namespace ModernUI
             grid_ViewTickets.Visibility = Visibility.Visible;
             grid_ViewAll.Visibility = Visibility.Visible;
             grid_ManageAccounts.Visibility = Visibility.Collapsed;
+        }
+
+        private void button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }
